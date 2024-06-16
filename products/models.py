@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 # Create your models here.
-class product(models.Model):
+class Product(models.Model):
     CATEGORY = (
         ('electronics', 'Electronics'),
         ('fashion', 'Fashion'),
@@ -36,7 +36,7 @@ class product(models.Model):
         self.save()
         
 class Review(models.Model):
-    product = models.ForeignKey(product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     review_text = models.TextField()
     rating = models.DecimalField(max_digits=2, decimal_places=1)
