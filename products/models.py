@@ -13,14 +13,15 @@ class Product(models.Model):
         ('beauty', 'Beauty'),
     )
 
-    image = models.ImageField()
+    image = models.ImageField(blank=True, null=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.IntegerField()
-    category = models.CharField()
+    category = models.CharField(max_length=25, choices=CATEGORY, default='Electronics')
     availability = models.BooleanField(default=True)
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     num_reviews = models.IntegerField(default=0)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -6,18 +6,17 @@ from django.contrib.auth.admin import UserAdmin
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
     list_display = ['email', 'username', 'is_staff', 'is_active']
-    list_filer = ['email', 'username', 'is_staff', 'is_active']
+    list_filter = ['email', 'username', 'is_staff', 'is_active']
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('permissions', {'fields': ('is_stuff', "is_active")}),
-        ('personal info', {'fields': ('fires_name', 'last_name', 'role', 'username')}),
-
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')}),
+        ('Personal Info', {'fields': ('first_name', 'last_name', 'role', 'username')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active')
-        })
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', 'is_superuser', 'groups', 'user_permissions')
+        }),
     )
     search_fields = ('email',)
     ordering = ('email',)
